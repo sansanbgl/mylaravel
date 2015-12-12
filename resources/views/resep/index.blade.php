@@ -6,7 +6,8 @@
 			<th>No</th>
 			<th>Nama Resep</th>
 			<th>Kode Resep</th>
-			<th>Pemilik Resep</th>
+
+			<th>Aksi</th>
 		</thead>
 		<tbody>
 			@foreach($items as $item)
@@ -14,7 +15,11 @@
 				<td>{{$item->id}}</td>
 				<td>{{$item->nama}}</td>
 				<td>{{$item->kode}}</td>
-				<td>{{$item->koki->nama}}</td>
+
+				<td>
+					<a href="{{url('resep/update/'.$item->id)}}">Update Resep</a>
+					<a href="{{url('resep/delete/'.$item->id)}}">Delete Resep</a>
+				</td>
 			</tr>
 			@endforeach
 		</tbody>

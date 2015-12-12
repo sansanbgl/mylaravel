@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bahan;
+use App\Models\Koki;
 use App\Models\Resep;
 use Input;
 use Request;
@@ -31,7 +32,8 @@ class ResepController extends Controller
     {
         if (Request::isMethod('get')) {
             $bahans = Bahan::get();
-            return view('resep.create', compact('bahans'));
+            $kokis  = Koki::get();
+            return view('resep.create', compact('bahans', 'kokis'));
 
         } elseif (Request::isMethod('post')) {
 

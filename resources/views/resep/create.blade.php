@@ -17,6 +17,15 @@
 				<td><input type="checkbox" name="bahan_ids[]" id="" value="{{$bahan->id}}">{{$bahan->nama}}</td>
 			</tr>
 			@endforeach
+			<tr>
+				<td>
+					<select name="koki_id" id="" class="form-control">
+					@foreach($kokis as $koki)
+					<option value="{{$koki->id}}">{{$koki->nama}}</option>
+					@endforeach
+				</select>
+				</td>
+			</tr>
 		</table>
 		{{csrf_field()}}
 		<button class="btn btn-block">Submit</button>
