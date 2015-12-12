@@ -19,7 +19,7 @@ class ResepController extends Controller
     {
 
         $items = Resep::all();
-        return view('resep.index', compact('resep'));
+        return view('resep.index', compact('items'));
     }
 
     /**
