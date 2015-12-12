@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+{{$someitem}}
 <div>
 	<table class="table">
 		<tr>
@@ -17,4 +18,4 @@
 		@endforeach
 	</table>
 </div>
-@stpo
+@stop

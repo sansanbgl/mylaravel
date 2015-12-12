@@ -8,9 +8,10 @@ class Resep extends Model
 {
     protected $table = "resep";
 
-	protected $fillable = ['nama', 'kode','koki_id']; 
+    protected $fillable = ['nama', 'kode', 'koki_id'];
 
-	public function koki(){
-		return $this->belongsTo('App\Models\Koki','koki_id','id');
-	}
+    public function koki()
+    {
+        return $this->belongsTo('App\Models\Koki', 'koki_id', 'id');
+    }
 }

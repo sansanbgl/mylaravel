@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Request;
-use Input;
+use App\Http\Controllers\Controller;
 use App\Models\Koki;
 use App\Models\Resep;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Input;
+use Request;
 
 class ResepController extends Controller
 {
@@ -18,10 +17,9 @@ class ResepController extends Controller
      */
     public function index()
     {
-        // $item['items'] = Bahan::all()->first();
-         //$items['resep'] = resep::with('koki')->get();
-         $items['resep'] = Resep::all();
-         return view('resep.index',$items);
+
+        $items = Resep::all();
+        return view('resep.index', compact('resep'));
     }
 
     /**
@@ -34,33 +32,31 @@ class ResepController extends Controller
         if (Request::isMethod('get')) {
             # code...
             $items['koki'] = Koki::all();
-            return view('resep.create',$items);
-        }
-        elseif (Request::isMethod('post')) {
+            return view('resep.create', $items);
+        } elseif (Request::isMethod('post')) {
             # code...
-           $item = array('nama' => Input::get('nama')
-                       ,'kode' => Input::get('kode')
-                       ,'koki_id' => Input::get('koki_id'));
-            resep::create($item); 
+            $item = array('nama' => Input::get('nama')
+                , 'kode' => Input::get('kode')
+                , 'koki_id' => Input::get('koki_id'));
+            resep::create($item);
             return redirect('resep');
         }
         /*
-        // Cara 1
-        $item = new Bahan();
-        $item->nama = "tepung maizena";
-        $item->kode = "BHN01";
-        $item->save();
+    // Cara 1
+    $item = new Bahan();
+    $item->nama = "tepung maizena";
+    $item->kode = "BHN01";
+    $item->save();
 
-        // Cara 2
-        // $item = array('nama' => "telur ayam",
-        //                'kode' => "BHN02"
-        //                 );
-        // Bahan::create($item);
-        */
-        
+    // Cara 2
+    // $item = array('nama' => "telur ayam",
+    //                'kode' => "BHN02"
+    //                 );
+    // Bahan::create($item);
+     */
+
     }
 
-   
     /**
      * Display the specified resource.
      *
@@ -82,19 +78,18 @@ class ResepController extends Controller
     {
         if (Request::isMethod("get")) {
             # code...
-            $item['resep'] = resep::find($id);   
-            $item['koki'] = Koki::all();     
-            return view('resep.update',$item);
-        }
-        elseif (Request::isMethod('post')) {
+            $item['resep'] = resep::find($id);
+            $item['koki']  = Koki::all();
+            return view('resep.update', $item);
+        } elseif (Request::isMethod('post')) {
             # code...
-            $item = resep::find($id);
-            $item->nama = Input::get('nama');
-            $item->kode = Input::get('kode');
+            $item          = resep::find($id);
+            $item->nama    = Input::get('nama');
+            $item->kode    = Input::get('kode');
             $item->koki_id = Input::get('koki_id');
             $item->save();
-           return redirect('resep');
-         }
+            return redirect('resep');
+        }
     }
 
     /**

@@ -53,8 +53,9 @@ class KokiController extends Controller
 
     public function detail($id)
     {
-        $koki = Koki::findOrFail($id);
-        return view('koki.detail', compact('koki'));
+        $koki     = Koki::findOrFail($id);
+        $someitem = 'a';
+        return view('koki.detail', compact('koki', 'someitem'));
 
     }
 

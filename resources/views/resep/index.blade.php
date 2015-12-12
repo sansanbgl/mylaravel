@@ -1,45 +1,23 @@
-<html>
-    <head>
-        <title>My Laravel</title>
-    </head>
-    <body>
-        <div>
-            <div>
-                <a href="resep/create">Tambah</a>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nama</th>
-                        <th>Kode</th>
-                        <th>Nama Koki</th>
-                    </tr>
-                </thead>
-            <tbody>
-            @foreach ( $resep as $item )
-            <tr>
-                <td>
-                    {{ $item->id }}
-                </td>
-                <td>
-                    {{ $item->nama }}
-                </td>
-                <td>
-                    {{ $item->kode }}
-                </td>
-                  <td>
-                    {{ $item->koki->nama }}
-                </td>
-                <td>
-                    <a href="resep/update/{{ $item['id'] }}">Ubah</a>
-                    <a href="resep/delete/{{ $item['id'] }}">Hapus</a>
-                </td>
-            </tr>
-            @endforeach
-
-            </tbody>
-            </table>   
-        </div>
-    </body>
-</html>
+@extends('layouts.master')
+@section('content')
+<div>
+	<table class="table table-striped">
+		<thead>
+			<th>No</th>
+			<th>Nama Resep</th>
+			<th>Kode Resep</th>
+			<th>Pemilik Resep</th>
+		</thead>
+		<tbody>
+			@foreach($items as $item)
+			<tr>
+				<td>{{$item->id}}</td>
+				<td>{{$item->nama}}</td>
+				<td>{{$item->kode}}</td>
+				<td>{{$item->koki->nama}}</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+</div>
+@stop
