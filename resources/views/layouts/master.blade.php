@@ -5,6 +5,7 @@
 	<title></title>
 </head>
 <body>
+@include('includes.error')
 @yield('content')
 
 </body>
