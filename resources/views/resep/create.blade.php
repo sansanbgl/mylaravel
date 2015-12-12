@@ -14,7 +14,7 @@
 		<table>
 			@foreach($bahans as $bahan)
 			<tr>
-				<td><input type="checkbox" name="bahan_ids[]" id="">{{$bahan->nama}}</td>
+				<td><input type="checkbox" name="bahan_ids[]" id="" value="{{$bahan->id}}">{{$bahan->nama}}</td>
 			</tr>
 			@endforeach
 		</table>
