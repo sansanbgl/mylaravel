@@ -14,6 +14,14 @@ class Bahan extends Model
      *
      * @var array
      */
+    protected function getRelationshipFromMethod($method)
+    {
+        $models = parent::getRelationshipFromMethod($method);
+
+        !is_null($models) ?: $models = $this->$method()->newQuery()->getModel();
+
+        return $this->relations[$method] = $models;
+    }
     protected $fillable = ['nama', 'kode'];
 
     public function resep()
