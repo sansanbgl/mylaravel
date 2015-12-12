@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bahan;
 use App\Models\Koki;
 use App\Models\Resep;
 use Input;
@@ -30,14 +31,12 @@ class ResepController extends Controller
     public function create()
     {
         if (Request::isMethod('get')) {
-            # code...
-            $items['koki'] = Koki::all();
-            return view('resep.create', $items);
+            $bahans = Bahan::get();
+            return view('resep.create', compact('bahans'));
+
         } elseif (Request::isMethod('post')) {
-            # code...
-            $item = array('nama' => Input::get('nama')
-                , 'kode' => Input::get('kode')
-                , 'koki_id' => Input::get('koki_id'));
+
+            dd(Input::all());
             resep::create($item);
             return redirect('resep');
         }

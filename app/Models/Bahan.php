@@ -15,4 +15,9 @@ class Bahan extends Model
      * @var array
      */
     protected $fillable = ['nama', 'kode'];
+
+    public function resep()
+    {
+        return $this->belongsToMany('App\Models\Resep', 'bahan_resep');
+    }
 }

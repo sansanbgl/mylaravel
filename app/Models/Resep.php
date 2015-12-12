@@ -14,4 +14,9 @@ class Resep extends Model
     {
         return $this->belongsTo('App\Models\Koki', 'koki_id', 'id');
     }
+
+    public function bahan()
+    {
+        return $this->belongsToMany('App\Models\Bahan', 'bahan_resep');
+    }
 }
