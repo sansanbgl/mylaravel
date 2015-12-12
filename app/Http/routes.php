@@ -28,6 +28,7 @@ Route::post('/koki/create', array('before' => 'csrf', 'uses' => 'KokiController@
 Route::get('/koki/update/{id}', 'KokiController@update');
 Route::post('/koki/update/{id}', array('before' => 'csrf', 'uses' => 'KokiController@update'));
 Route::get('/koki/delete/{id}', 'KokiController@delete');
+Route::get('/koki/detail/{id}', 'KokiController@detail');
 
 Route::get('/resep', 'ResepController@index');
 Route::get('/resep/create', 'ResepController@create');
@@ -40,5 +41,14 @@ Route::get('/koki-auto-create', function () {
     for ($i = 0; $i < 10; $i++) {
         \App\Models\Koki::create([
             'nama' => 'koki' . $i, 'kode' => 'ko' . $i]);
+    }
+});
+
+Route::get('/koki-resep-auto', function () {
+    for ($i = 0; $i < 10; $i++) {
+        for ($j = 0; $j < 5; $j++) {
+            \App\Models\Resep::create([
+                'koki_id' => $i, 'nama' => 'resepmilikkoki_' . $i . 'nomer' . $j]);
+        }
     }
 });
