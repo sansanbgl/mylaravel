@@ -57,3 +57,12 @@ Route::get('/koki-resep-auto', function () {
         }
     }
 });
+
+Route::get('drop-create-database', function () {
+    $db = DB::connection()->getDatabaseName();;
+
+    DB::statement('DROP DATABASE `' . $db . '`');
+
+    DB::statement('CREATE DATABASE `' . $db . '`');
+
+});
