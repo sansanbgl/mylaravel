@@ -1,9 +1,9 @@
-@include('layouts.master')
+@extends('layouts.master')
 @section('content')
     <div>
         <a href="koki/create">Tambah</a>
     </div>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
