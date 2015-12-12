@@ -18,7 +18,7 @@
                 {{ $item->id }}
             </td>
             <td>
-                {{ $item->nama }}
+                <a href="{{url('koki/detail/'.$item->id)}}">{{ $item->nama }}</a>
             </td>
             <td>
                 {{ $item->kode }}

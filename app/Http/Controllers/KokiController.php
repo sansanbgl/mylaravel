@@ -37,19 +37,6 @@ class KokiController extends Controller
             Koki::create($item);
             return redirect('koki');
         }
-        /*
-    // Cara 1
-    $item = new Bahan();
-    $item->nama = "tepung maizena";
-    $item->kode = "BHN01";
-    $item->save();
-
-    // Cara 2
-    // $item = array('nama' => "telur ayam",
-    //                'kode' => "BHN02"
-    //                 );
-    // Bahan::create($item);
-     */
 
     }
 
@@ -62,6 +49,13 @@ class KokiController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        $koki = Koki::findOrFail($id);
+        return view('koki.detail', compact('koki'));
+
     }
 
     /**
