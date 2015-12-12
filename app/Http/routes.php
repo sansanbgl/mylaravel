@@ -36,6 +36,7 @@ Route::post('/resep/create', array('before' => 'csrf', 'uses' => 'ResepControlle
 Route::get('/resep/update/{id}', 'ResepController@update');
 Route::post('/resep/update/{id}', array('before' => 'csrf', 'uses' => 'ResepController@update'));
 Route::get('/resep/delete/{id}', 'ResepController@delete');
+Route::get('/resep/detail/{id}', 'ResepController@detail');
 
 Route::get('/somerouteshere', 'ResepController@index');
 Route::get('/somerouteshere/create', 'ResepController@create');

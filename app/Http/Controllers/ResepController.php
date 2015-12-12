@@ -34,6 +34,7 @@ class ResepController extends Controller
             return view('resep.create', compact('bahans'));
 
         } elseif (Request::isMethod('post')) {
+
             $newResep  = Resep::create(Input::all());
             $bahan_ids = Input::get('bahan_ids');
             $newResep->bahan()->attach($bahan_ids);
@@ -72,13 +73,13 @@ class ResepController extends Controller
             # code...
             $resep  = Resep::find($id);
             $bahans = Bahan::get();
-            return view('resep.update', compact('bahan', 'resep'));
+            return view('resep.update', compact('bahans', 'resep'));
         } elseif (Request::isMethod('post')) {
             # code...
             $resep       = Resep::findOrFail($id);
             $newBahanIds = Input::get('bahan_ids');
             $resep->bahan()->sync($newBahanIds);
-            return redirect('resep/create');
+            return redirect('resep/detail/' . $resep->id);
 
         }
     }
