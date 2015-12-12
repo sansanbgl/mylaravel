@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bahan;
-use App\Models\Koki;
 use App\Models\Resep;
 use Input;
 use Request;
@@ -35,25 +34,19 @@ class ResepController extends Controller
             return view('resep.create', compact('bahans'));
 
         } elseif (Request::isMethod('post')) {
+            $newResep  = Resep::create(Input::all());
+            $bahan_ids = Input::get('bahan_ids');
+            $newResep->bahan()->attach($bahan_ids);
 
-            dd(Input::all());
-            resep::create($item);
-            return redirect('resep');
+            return redirect('resep/detail/' . $newResep->id);
         }
-        /*
-    // Cara 1
-    $item = new Bahan();
-    $item->nama = "tepung maizena";
-    $item->kode = "BHN01";
-    $item->save();
 
-    // Cara 2
-    // $item = array('nama' => "telur ayam",
-    //                'kode' => "BHN02"
-    //                 );
-    // Bahan::create($item);
-     */
+    }
 
+    public function detail($id)
+    {
+        $item = Resep::findOrFail($id);
+        return view('resep.detail', compact('item'));
     }
 
     /**
@@ -77,17 +70,16 @@ class ResepController extends Controller
     {
         if (Request::isMethod("get")) {
             # code...
-            $item['resep'] = resep::find($id);
-            $item['koki']  = Koki::all();
-            return view('resep.update', $item);
+            $resep  = Resep::find($id);
+            $bahans = Bahan::get();
+            return view('resep.update', compact('bahan', 'resep'));
         } elseif (Request::isMethod('post')) {
             # code...
-            $item          = resep::find($id);
-            $item->nama    = Input::get('nama');
-            $item->kode    = Input::get('kode');
-            $item->koki_id = Input::get('koki_id');
-            $item->save();
-            return redirect('resep');
+            $resep       = Resep::findOrFail($id);
+            $newBahanIds = Input::get('bahan_ids');
+            $resep->bahan()->sync($newBahanIds);
+            return redirect('resep/create');
+
         }
     }
 
